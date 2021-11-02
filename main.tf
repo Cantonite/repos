@@ -80,6 +80,10 @@ resource "github_repository_environment" "this" {
   environment = each.value.environment.name
   repository  = github_repository.this[each.value.repo.name].name
 
+  reviewers {
+    users = [data.github_user.mattcanty.id]
+  }
+
   deployment_branch_policy {
     protected_branches     = true
     custom_branch_policies = false
