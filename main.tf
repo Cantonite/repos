@@ -13,10 +13,31 @@ terraform {
 locals {
   repos = {
     "terraform-deployment-pipeline" = {
+      name               = "terraform-deployment-pipeline"
       description        = "A sample application which uses Terraform and is promoted through a pipeline"
       gitignore_template = "Terraform"
       topics             = ["terraform", "pipelines", "samples"]
+      environments = {
+        dev   = { name = "dev" }
+        stage = { name = "stage" }
+        prod  = { name = "prod" }
+      }
     }
+  }
+
+  repo_environment_list = flatten([
+    for repo_key, repo in local.repos : [
+      for environment_key, environment in repo.environments : {
+        "${repo_key}-${environment_key}" = {
+          "environment" = environment
+          "repo"        = repo
+        }
+      }
+    ]
+  ])
+
+  repo_environments = { for item in local.repo_environment_list :
+    keys(item)[0] => values(item)[0]
   }
 }
 
@@ -51,4 +72,16 @@ resource "github_branch_default" "this" {
 
   branch     = "main"
   repository = github_repository.this[each.key].name
+}
+
+resource "github_repository_environment" "this" {
+  for_each = local.repo_environments
+
+  environment = each.value.environment.name
+  repository  = github_repository.this[each.value.repo.name].name
+
+  deployment_branch_policy {
+    protected_branches     = true
+    custom_branch_policies = false
+  }
 }
