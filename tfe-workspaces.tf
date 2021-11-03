@@ -1,9 +1,12 @@
 resource "tfe_workspace" "application_environment" {
   for_each = local.application_environments
 
-  name               = "${each.value.application.name}-${each.value.environment.name}"
-  organization       = "Cantonite"
-  allow_destroy_plan = false
+  name                = "${each.value.application.name}-${each.value.environment.name}"
+  organization        = "Cantonite"
+  allow_destroy_plan  = false
+  speculative_enabled = false
+  auto_apply          = false
+  execution_mode      = "local"
 
   vcs_repo {
     identifier     = "Cantonite/${each.value.application.name}"
