@@ -7,6 +7,7 @@ resource "tfe_workspace" "application_environment" {
   speculative_enabled = false
   auto_apply          = false
   execution_mode      = "local"
+  working_directory   = "terraform/environments/${each.value.environment.name}"
 
   vcs_repo {
     identifier     = "Cantonite/${each.value.application.name}"
