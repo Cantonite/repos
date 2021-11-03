@@ -1,14 +1,14 @@
 {
-    "name": "terraform-codespace",
-    "settings": {
-      "[terraform]": {
-          "editor.formatOnSave": true
-      }
-    },
-    "extensions": [
-      "eamodio.gitlens",
-      "davidanson.vscode-markdownlint",
-      "hashicorp.terraform",
-    ],
-    "postCreateCommand": "/bin/bash ./.devcontainer/post-install.sh"
-  }
+  "name": "terraform-codespace",
+  "settings": {
+    "[terraform]": {
+        "editor.formatOnSave": true
+    }
+  },
+  "extensions": [
+    "eamodio.gitlens",
+    "davidanson.vscode-markdownlint",
+    "hashicorp.terraform",
+  ],
+  "postCreateCommand": "/bin/bash ./.devcontainer/post-install.sh"
+}
