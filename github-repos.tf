@@ -3,7 +3,7 @@ resource "github_repository" "this" {
 
   name               = each.value.name
   description        = each.value.description
-  gitignore_template = each.value.gitignore_template
+  gitignore_template = try(each.value.gitignore_template, null)
   topics             = each.value.tags
   homepage_url       = "cantonite.com"
   license_template   = "agpl-3.0"
