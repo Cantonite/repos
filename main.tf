@@ -18,6 +18,13 @@ locals {
         production  = { name = "production" }
       }
     }
+    "project-x" = {
+      name               = "project-x"
+      description        = "A project I am working on known currently as X."
+      gitignore_template = "Go"
+      tags               = ["project"]
+      environments       = {}
+    }
   }
 
   application_environment_list = flatten([
