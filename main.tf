@@ -1,8 +1,15 @@
 locals {
   applications = {
+    "terraform-reusable-workflows-crash" = {
+      name               = "terraform-reusable-workflows-crash"
+      description        = "I spotted a weird issue with Terraform application crashing when used in a reusable workflow."
+      gitignore_template = "Terraform"
+      tags               = ["terraform", "pipelines", "samples"]
+      environments       = {}
+    }
     "terraform-deployment-pipeline" = {
       name               = "terraform-deployment-pipeline"
-      description        = "A sample application which uses Terraform and is promoted through a pipeline"
+      description        = "A sample application which uses Terraform and is promoted through a pipeline."
       gitignore_template = "Terraform"
       tags               = ["terraform", "pipelines", "samples"]
       environments = {
