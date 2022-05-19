@@ -25,6 +25,15 @@ locals {
       tags               = ["docker"]
       environments       = {}
     }
+    "aws-service-graph-test" = {
+      name = "aws-service-graph-test"
+      description = "A test suite that aimlessly calls AWS services in a chain."
+      gitignore_template = "Terraform"
+      tags               = ["terraform", "pipelines", "samples"]
+      environments = {
+        development = { name = "development" }
+      }
+    }
   }
 
   application_environment_list = flatten([
