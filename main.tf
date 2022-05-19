@@ -21,7 +21,7 @@ locals {
     "docker-images" = {
       name               = "docker-images"
       description        = "A place for Docker images."
-      gitignore_template = "Docker"
+      gitignore_template = "VisualStudio"
       tags               = ["docker"]
       environments       = {}
     }
